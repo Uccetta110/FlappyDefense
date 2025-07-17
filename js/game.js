@@ -276,12 +276,20 @@ document.addEventListener("DOMContentLoaded", () => {
           case 1:
             Functions.setDrawPath_lvl1(drawPathTile, gameState);
             Functions.setDrawShadows_lvl1(drawDetail);
-            Functions.setDrawMapObjects_lvl1(drawDetail, addAnimatedObject, TILE_SIZE);
+            Functions.setDrawMapObjects_lvl1(
+              drawDetail,
+              addAnimatedObject,
+              TILE_SIZE
+            );
             break;
           default:
             Functions.setDrawPath_lvl1(drawPathTile, gameState);
             Functions.setDrawShadows_lvl1(drawDetail, gameState);
-            Functions.setDrawMapObjects_lvl1(drawDetail, addAnimatedObject, gameState);
+            Functions.setDrawMapObjects_lvl1(
+              drawDetail,
+              addAnimatedObject,
+              gameState
+            );
             break;
         }
 
@@ -294,9 +302,8 @@ document.addEventListener("DOMContentLoaded", () => {
     grass.onload = onImageLoad;
   }
 
-  function generateDrawPath () {
-    for (let i=0; i<gameState.path.length; i++ )
-    {
+  function generateDrawPath() {
+    for (let i = 0; i < gameState.path.length; i++) {
       let tileIndex;
       do {
         tileIndex = Math.floor(Math.random() * 64);
@@ -485,31 +492,41 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ============= 3 GESTIONE GIOCO =============
-  function gameLoop() {
+  // ...existing code...
+
+  let lastTimestamp = performance.now();
+
+  function gameLoop(timestamp) {
+    const delta = (timestamp - lastTimestamp) / 1000; // delta in secondi
+    lastTimestamp = timestamp;
+
     gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
     towerCtx.clearRect(0, 0, towerCanvas.width, towerCanvas.height);
 
-    if (gameState.animatedObjects) updateAnimatedObjects();
-    if (gameState.animatedTowers) updateAnimatedTowers();
-    if (gameState.damageNumbers) renderDamageNumbers();
-    if (gameState.towers.length > 0) updateUnits();
+    // Passa delta alle funzioni che aggiornano lo stato
+    if (gameState.animatedObjects) updateAnimatedObjects(delta);
+    if (gameState.animatedTowers) updateAnimatedTowers(delta);
+    if (gameState.damageNumbers) renderDamageNumbers(delta);
+    if (gameState.towers.length > 0) updateUnits(delta);
 
-    // Aggiorna e disegna il fal
-    requestAnimationFrame(gameLoop);
-
-    // Gioco
     if (gameState.waveInProgress) {
-      updateTowers();
-      updateProjectiles();
-      updateEnemies();
-      //drawEnemies();
+      updateTowers(delta);
+      updateProjectiles(delta);
+      updateEnemies(delta);
       if (gameState.waveTime > 0) {
-        gameState.waveTime--;
+        gameState.waveTime -= delta * 60; // Adatta waveTime al tempo reale
       } else if (gameState.enemies.length == 0) {
         waveEnd();
       }
     }
+
+    requestAnimationFrame(gameLoop);
   }
+
+  // ...existing code...
+  // Sostituisci la chiamata iniziale a gameLoop con:
+
+  // ...existing code...
 
   async function startWave() {
     if (gameState.waveInProgress) {
@@ -1632,5 +1649,5 @@ document.addEventListener("DOMContentLoaded", () => {
   loadAssets();
   setGame();
   drawGame();
-  gameLoop();
+  requestAnimationFrame(gameLoop);
 });
