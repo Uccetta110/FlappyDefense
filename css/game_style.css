@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #060b11;
+  text-align: center;
+}
+
+h1 {
+  color: #5664b1;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+#game-container {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+#background-canvas {
+  border: 3px solid #333;
+  background-color: transparent;
+  z-index: 1;
+}
+
+#game-canvas {
+  z-index: 2;
+}
+
+#tower-canvas {
+  z-index: 3;
+}
+
+#top-canvas {
+  z-index: 10;
+}
+
+canvas {
+  border: 3px solid #333;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+#game-ui {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -10px;
+  margin-bottom: -2px;
+  padding: 9px;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+}
+
+.tower-selection {
+  margin-top: -10px;
+  padding: 9px;
+  background-color: #333;
+  border-radius: 5px;
+  z-index: 5;
+  position: relative;
+}
+
+.tower-option {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+button {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.tower-option:hover {
+  background-color: #45a049;
+}

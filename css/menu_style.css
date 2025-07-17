@@ -1,0 +1,138 @@
+/* ===================
+   STILE BASE GIOCO
+=================== */
+body {
+  margin: 0;
+  color: #060b11;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  background-color: #060b11;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+}
+
+#click-layer {
+  position: absolute;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  transform: translate(-50%);
+  z-index: 2;
+  pointer-events: auto;
+  color: transparent;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+#background {
+  position: fixed;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  transform: translate(-50%);
+  object-fit: contain;
+  filter: blur(8px);
+  transition: filter 0.8s ease;
+  z-index: -1;
+}
+
+#background.focused {
+  filter: blur(0px);
+}
+
+.background.focused {
+  filter: blur(0px);
+}
+
+/* ===================
+     STILE MENU PRINCIPALE
+  =================== */
+.main-menu {
+  position: fixed;
+  display: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+z-index: 5;
+  color: #fff;
+  gap: 20px;
+  transition: transform 0.8s ease, opacity 0.8s;
+}
+
+.main-menu h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.main-menu button {
+  position: relative;
+  padding: 12px 30px;
+  font-size: 1.2em;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  transition: transform 0.8s ease, opacity 0.8s;
+}
+
+.main-menu.hide-buttons button {
+  transform: translateY(100vh);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.main-menu.hide {
+  transform: translate(-50%, 100vh); /* resta centrato orizzontalmente */
+  opacity: 0;
+  pointer-events: none;
+}
+
+.main-menu button:hover {
+  background-color: #555;
+}
+
+/* ===================
+     STILE MAPPA LIVELLI
+  =================== */
+.level-map {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  padding: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.level-tile {
+  background-color: #222;
+  border: 2px solid #666;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.1em;
+  text-align: center;
+  padding: 20px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.level-tile:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}

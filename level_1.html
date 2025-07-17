@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlappyDefense - Level 1</title>
+    <link rel="stylesheet" href="css/game_style.css" />
+</head>
+<h1>FlappyDefense</h1>
+<div id="game-container">
+    <div id="game-ui">
+        <div id="money">Monete: <span id="money-value">150</span></div>
+        <div id="wave">Ondata: <span id="wave-value">1</span></div>
+        <div id="lives">Vite: <span id="lives-value">10</span></div>
+    </div>
+    <div id="canvas-container" style="position: relative; width: 1566px; height: 786px">
+        <canvas id="background-canvas" width="1560px" height="780px"
+            style="position: absolute; left: 0; top: 0; z-index: 0"></canvas>
+        <canvas id="game-canvas" width="1560px" height="780px"
+            style="position: absolute; left: 0; top: 0; z-index: 2"></canvas>
+        <canvas id="tower-canvas" width="1560px" height="780px"
+            style="position: absolute; left: 0; top: 0; z-index: 1"></canvas>
+        <canvas id="sprite-canvas" width="1560px" height="780px"
+            style="position: absolute; left: 0; top: 0; z-index: 2"></canvas>
+        <canvas id="top-canvas" width="1560px" height="780px"
+            style="position: absolute; left: 0; top: 0; z-index: 3"></canvas>
+    </div>
+
+    <div class="tower-selection">
+        <button class="tower-option" data-tower="archer" data-cost="50">
+            Arcere (50)
+        </button>
+        <button class="tower-upgrade" id="tower-upgrade">
+            Migliora Torre 
+        </button>
+        <!--<div class="tower-option" data-tower="basic" data-cost="50">Torre Base (50)</div>
+            <div class="tower-option" data-tower="fast" data-cost="100">Torre Veloce (100)</div>-->
+        <button id="start-wave">Inizia Ondata</button>
+        <button id="Audio">Audio On</button>
+        <button onclick="location.href='main_menu.html'" id="exit">Exit</button>
+    </div>
+</div>
+
+<!-- Carica il file JavaScript dalla cartella js -->
+<script type="module" src="js/game.js"></script>
+</body>
+
+</html>
