@@ -514,7 +514,8 @@ document.addEventListener("DOMContentLoaded", () => {
       updateProjectiles(delta);
       updateEnemies(delta);
       if (gameState.waveTime > 0) {
-        gameState.waveTime -= delta * 60; // Adatta waveTime al tempo reale
+        gameState.waveTime -= delta;
+ // Adatta waveTime al tempo reale
       } else if (gameState.enemies.length == 0) {
         waveEnd();
       }
@@ -756,7 +757,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "/assets/audio/Game/I_ll-die-next-summer-_no-joke_-_online-audio-converter.com_.mp3"
       );
       sounds.backgroundMusic.loop = true;
-      sounds.backgroundMusic.volume = 0;
+      sounds.backgroundMusic.volume = 0.5;
       sounds.buttonClick.volume = 0.1;
 
       console.log("Audio caricato con successo");
@@ -928,7 +929,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  function updateAnimatedObjects() {
+  function updateAnimatedObjects(delta) {
     try {
       gameState.animatedObjects.forEach((object) => {
         object.objects.update();
